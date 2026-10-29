@@ -11,3 +11,6 @@ report.html
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Relatórios e artefatos internos do agente
+.agents/
