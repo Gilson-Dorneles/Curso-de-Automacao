@@ -2,6 +2,17 @@
 
 Suíte de automação web com Robot Framework para o ServeRest.
 
+## Clonar o repositório
+
+No PowerShell, clone a branch do fluxo e entre na pasta do clone:
+
+```powershell
+git clone --branch feature/gilson-dorneles https://github.com/Gilson-Dorneles/Curso-de-Automacao.git Curso-de-Automacao
+Set-Location .\Curso-de-Automacao
+```
+
+Se o clone já existir, entre diretamente na pasta `Curso-de-Automacao` e confirme a branch com `git status`.
+
 ## Preparar o ambiente
 
 Execute os comandos a partir da raiz deste clone no PowerShell:
