@@ -1,0 +1,27 @@
+{
+  "id": "FEAT-001",
+  "type": "chore",
+  "description": "Preparar o clone alvo para instalação reproduzível e manter as suítes existentes válidas, sem tocar no workspace pai nem em tests/Testes_Gerais.",
+  "status": "completed",
+  "steps": [
+    "Criar requirements.txt na raiz do clone com robotframework==7.5, robotframework-seleniumlibrary==6.9.0 e robotframework-faker==6.0.0.",
+    "Atualizar .gitignore para ignorar .venv/, results/, caches Python e saídas geradas pelo Robot, preservando a regra existente results/.",
+    "Ampliar resources/configs/qa.resource sem remover ${URL} ou ${BROWSER}, centralizando timeout, Cadastro realizado com sucesso, Produto 1793283513282 e Em construção aguarde.",
+    "Atualizar README.md com criação do venv, instalação, pip check, dry-run, tags, comando E2E e a limitação runtime da rota /carrinho.",
+    "Executar os comandos de instalação e o dry-run de todas as suítes existentes; registrar em findings os resultados e qualquer ajuste limitado necessário para manter os seis arquivos de tests/web válidos."
+  ],
+  "acceptance_criteria": [
+    "requirements.txt permite instalar as três dependências pinadas em um clone limpo e pip check termina sem dependências quebradas.",
+    ".venv/ e results/ não aparecem como arquivos não rastreados depois de instalar e rodar o Robot.",
+    "O dry-run de tests/web reconhece e aprova os 12 casos existentes sem editar as suítes legadas.",
+    "README.md documenta comandos reais em PowerShell, execução seletiva por tags e a impossibilidade atual de confirmar o produto dentro de /carrinho."
+  ],
+  "verification": [
+    "Executar `& '.\\.venv\\Scripts\\python.exe' -m pip install -r requirements.txt` e esperar término sem erro.",
+    "Executar `& '.\\.venv\\Scripts\\python.exe' -m pip check` e esperar `No broken requirements found.`.",
+    "Executar `& '.\\.venv\\Scripts\\python.exe' -m robot --dryrun --output NONE --log NONE --report NONE tests\\web` e esperar 12 testes aprovados.",
+    "Executar `git status --short` e confirmar que .venv/ e results/ não são listados."
+  ],
+  "blocked_reason": null,
+  "findings": "Implementação concluída sem editar as suítes legadas nem o workspace pai. Comandos executados a partir de C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao: `py -m venv .venv` (sucesso, necessário porque o venv não existia); `& '.\\.venv\\Scripts\\python.exe' -m pip install -r requirements.txt` (sucesso; Robot Framework 7.5, SeleniumLibrary 6.9.0 e FakerLibrary 6.0.0 instalados); `& '.\\.venv\\Scripts\\python.exe' -m pip check` (sucesso: No broken requirements found.); `& '.\\.venv\\Scripts\\python.exe' -m robot --dryrun --output NONE --log NONE --report NONE tests\\web` (sucesso: 12 testes aprovados); `git status --short` (sucesso: .venv/ e results/ não listados; apenas alterações esperadas e .agents/ do hand-off aparecem). O README documenta criação do venv, instalação, pip check, dry-run, seleção por tags e execução E2E. A limitação runtime permanece: /carrinho mostra Em construção aguarde, portanto a confirmação do produto dentro do carrinho não pode ser feita e nenhum locator de produto deve ser inventado. A suíte E2E de cadastro/login/carrinho pertence a etapa posterior e não foi implementada nesta FEAT-001."
+}

@@ -1,1 +1,13 @@
+# Ambiente virtual local
+.venv/
+
+# Saídas e caches do Robot Framework
 results/
+output.xml
+log.html
+report.html
+
+# Caches Python
+__pycache__/
+*.py[cod]
+*$py.class
