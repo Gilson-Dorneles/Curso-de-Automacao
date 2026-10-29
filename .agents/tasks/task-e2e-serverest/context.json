@@ -1,0 +1,33 @@
+{
+  "project_type": "Suíte de automação web Robot Framework no ServeRest, com resources separados em configs, page_objects, pages e steps e suítes em tests/web.",
+  "language": "Robot Framework 7.5 em arquivos .robot/.resource com headings e keywords pt-br; comandos de ambiente em Windows PowerShell.",
+  "build_system": "Não há compilação. O clone alvo atualmente não possui requirements.txt; deve usar um venv local e pip com robotframework==7.5, robotframework-seleniumlibrary==6.9.0 e robotframework-faker==6.0.0.",
+  "test_framework": "Robot Framework 7.5, SeleniumLibrary 6.9.0 e FakerLibrary 6.0.0; o dry-run atual de tests/web reconhece 12 casos legados.",
+  "build_command": "& '.\\.venv\\Scripts\\python.exe' -m pip install -r requirements.txt; não existe comando de compilação.",
+  "test_command": "& '.\\.venv\\Scripts\\python.exe' -m robot --dryrun --output NONE --log NONE --report NONE tests\\web e & '.\\.venv\\Scripts\\python.exe' -m robot --outputdir results/e2e-cadastro-login-carrinho tests\\web\\cadastro_login_carrinho_e2e_test.robot",
+  "verification_instructions": "A partir de C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao, instalar requirements.txt, executar pip check, fazer dry-run da nova suíte e de tests/web, verificar estaticamente que o novo teste não contém locators e que os resources não contêm Sleep, depois executar a nova suíte com outputdir results/e2e-cadastro-login-carrinho. A execução real deve registrar que /carrinho atualmente mostra Em construção aguarde e não deve inventar um locator de produto.",
+  "snapshot_or_generated_files": "O Robot gera output.xml, log.html, report.html e eventuais screenshots dentro de results/e2e-cadastro-login-carrinho; results/ deve permanecer ignorado e nenhum desses arquivos deve ser versionado.",
+  "environment_constraints": "Trabalhar somente em C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao na branch feature/gilson-dorneles; não editar C:\\Software\\Robot\\academy_automacao nem tests\\Testes_Gerais. O site externo é variável. O produto confirmado na exploração foi Produto 1793283513282, com quantidade 10 e ID runtime 08K6fB8hh10FXMzr; a rota /carrinho foi confirmada como placeholder Em construção aguarde. Não usar Sleep, credencial pessoal ou senha compartilhada.",
+  "contribution_requirements": "Não foram encontrados AGENTS.md, CONTRIBUTING.md ou steering files no clone. Preservar as seis suítes existentes e os nomes/aliases que login_sucesso_test.robot usa. Usar language: pt-br, headings localizados e BDD Dado/Quando/Então/E. Não criar .feature.",
+  "key_patterns": "resources/configs/qa.resource define ${URL}=https://front.serverest.dev/ e ${BROWSER}=chrome. login_page_objects.resource guarda locators, login_page.resource executa Input Text/Input Password/Click, login_steps.resource compõe BDD e login_sucesso_test.robot consome os steps. home_page.resource já usa Wait Until Page Contains Element. O novo fluxo deve seguir a mesma separação e manter locators somente em page_objects.",
+  "relevant_files": [
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\README.md",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\.gitignore",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\resources\\configs\\qa.resource",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\resources\\page_objects\\cadastro_page_objects.resource",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\resources\\page_objects\\home_page_objects.resource",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\resources\\page_objects\\login_page_objects.resource",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\resources\\pages\\cadastro_page.resource",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\resources\\pages\\home_page.resource",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\resources\\pages\\login_page.resource",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\resources\\steps\\cadastrar_steps.resource",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\resources\\steps\\login_steps.resource",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\tests\\web\\cadastrar_aleatorio_test.robot",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\tests\\web\\cadastrar_test.robot",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\tests\\web\\cadastrar_usuario_basico.robot",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\tests\\web\\faker_test.robot",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\tests\\web\\login_insucesso_test.robot",
+    "C:\\Software\\Robot\\academy_automacao\\Curso-de-Automacao\\tests\\web\\login_sucesso_test.robot"
+  ],
+  "directory_structure": "resources/configs contém variáveis QA; resources/page_objects deve conter somente locators; resources/pages contém ações Selenium e waits; resources/steps contém composição BDD e dados; tests/web contém as suítes Robot. O README e .gitignore ficam na raiz do clone. .agents/tasks/task-e2e-serverest contém o hand-off do workflow e não é código de automação."
+}
