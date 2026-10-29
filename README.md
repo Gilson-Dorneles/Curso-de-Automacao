@@ -7,7 +7,7 @@ Suíte de automação web com Robot Framework para o ServeRest.
 Execute os comandos a partir da raiz deste clone no PowerShell:
 
 ```powershell
-& ".\.venv\Scripts\python.exe" -m venv .venv
+py -m venv .venv
 & ".\.venv\Scripts\python.exe" -m pip install -r requirements.txt
 & ".\.venv\Scripts\python.exe" -m pip check
 ```
