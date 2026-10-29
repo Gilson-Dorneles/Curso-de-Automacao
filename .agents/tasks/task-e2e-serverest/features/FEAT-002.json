@@ -1,0 +1,30 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Implementar a nova suíte BDD pt-br em camadas para cadastro Faker único, login explícito, seleção do produto real Produto 1793283513282 e clique de adição ao carrinho, usando apenas locators confirmados.",
+  "status": "completed",
+  "steps": [
+    "Preencher resources/page_objects/cadastro_page_objects.resource e ampliar home_page_objects.resource e login_page_objects.resource com os locators confirmados para data-testid cadastrar, nome, email, password, entrar e logout.",
+    "Criar produtos_page_objects.resource, lista_compras_page_objects.resource e carrinho_page_objects.resource. Usar o card div.card com h5.card-title e button[data-testid=adicionarNaLista], o item data-testid=shopping-cart-product-name, button[data-testid=adicionar carrinho] e o marcador body contendo Em construção aguarde; não criar locator de produto inexistente no carrinho.",
+    "Preencher cadastro_page.resource, aprimorar home_page.resource e login_page.resource com ações Selenium e waits condicionais; preservar o alias legado usado por login_steps.resource.",
+    "Criar produtos_page.resource, lista_compras_page.resource e carrinho_page.resource para esperar e executar cada etapa sem Sleep.",
+    "Implementar cadastrar_steps.resource e atualizar login_steps.resource; criar produtos_steps.resource e carrinho_steps.resource. Gerar nome/senha com FakerLibrary e e-mail com FakerLibrary.Uuid4 em domínio sintético, guardar dados com Set Test Variable e abrir /login depois do cadastro para executar login explícito.",
+    "Criar tests/web/cadastro_login_carrinho_e2e_test.robot com language: pt-br, headings localizados, scenario composto só por Dado/Quando/Então/E e tags e2e, cadastro, login e carrinho.",
+    "Rodar dry-run, buscas estáticas e a execução real em results/e2e-cadastro-login-carrinho; registrar findings, incluindo que a execução atual termina na página /carrinho com Em construção aguarde e não confirma produto dentro do carrinho."
+  ],
+  "acceptance_criteria": [
+    "A nova suíte não contém .feature, Sleep nem locators inline no teste; todos os locators ficam em resources/page_objects.",
+    "O dry-run do novo arquivo e o dry-run de tests/web passam com as suítes legadas preservadas.",
+    "Na execução real, dados Faker únicos cadastram um usuário, o teste abre /login, autentica esse usuário, chega a /home, seleciona o produto confirmado e clica em Adicionar no carrinho.",
+    "A execução real verifica somente o comportamento observado em runtime, /carrinho com Em construção aguarde; nenhuma evidência declara que o produto está efetivamente no carrinho enquanto a UI não expuser esse elemento.",
+    "Se Produto 1793283513282 ou qualquer locator confirmado deixar de existir no runtime, o resultado é registrado como bloqueado/ponto aberto e não é substituído por locator inventado."
+  ],
+  "verification": [
+    "Executar `& '.\\.venv\\Scripts\\python.exe' -m robot --dryrun --output NONE --log NONE --report NONE tests\\web\\cadastro_login_carrinho_e2e_test.robot` e esperar um caso aprovado.",
+    "Executar `& '.\\.venv\\Scripts\\python.exe' -m robot --dryrun --output NONE --log NONE --report NONE tests\\web` e esperar 13 casos aprovados após incluir o novo caso.",
+    "Executar buscas PowerShell que falhem se o novo teste contiver `id:`, `xpath:`, `css:`, `link:` ou `tag:` e se resources/tests novos contiverem `Sleep` ou arquivo `.feature`.",
+    "Executar `& '.\\.venv\\Scripts\\python.exe' -m robot --outputdir results/e2e-cadastro-login-carrinho tests\\web\\cadastro_login_carrinho_e2e_test.robot`; registrar sucesso até a rota/placeholder atual ou marcar o trabalho como bloqueado se a UI divergir."
+  ],
+  "blocked_reason": null,
+  "findings": "Implementação concluída somente para FEAT-002. Comandos executados a partir de C:/Software/Robot/academy_automacao/Curso-de-Automacao: pip install -r requirements.txt (sucesso; dependências já instaladas); pip check (sucesso: No broken requirements found.); robot --dryrun --output NONE --log NONE --report NONE tests/web/cadastro_login_carrinho_e2e_test.robot (sucesso: 1 caso aprovado); robot --dryrun --output NONE --log NONE --report NONE tests/web (sucesso: 13 casos aprovados, incluindo as seis suítes legadas); buscas PowerShell com Select-String/git status (sucesso: nenhum locator inline no novo teste, nenhum Sleep nos arquivos novos/alterados e nenhum arquivo .feature); robot --outputdir results/e2e-cadastro-login-carrinho tests/web/cadastro_login_carrinho_e2e_test.robot (sucesso: 1 caso aprovado). A primeira execução real encontrou a validação do navegador para o domínio sintético .test; o e-mail Faker foi ajustado para o domínio reservado example.com e a execução final passou. A execução final confirmou cadastro com dados Faker únicos, login explícito em /login, chegada à loja, seleção de Produto 1793283513282, inclusão na lista, clique em button[data-testid=adicionar carrinho] e navegação para /carrinho. A rota /carrinho atualmente exibe somente Em construção aguarde; não há shopping-cart-product-name nessa página, portanto a suíte verifica apenas a rota e o marcador confirmado e não declara o produto presente no carrinho. O locator confirmado de logout foi mantido nos page objects, mas a execução atual exibiu Serverest Store sem tornar esse botão visível; por isso o caso novo confirma a chegada à loja pelo texto e não adiciona uma asserção de logout. Artefatos da execução permanecem em results/e2e-cadastro-login-carrinho/ e são ignorados pelo Git. Ponto aberto para etapa posterior: só adicionar uma confirmação do produto no carrinho após a UI expor esse elemento em nova exploração runtime."
+}
