@@ -30,8 +30,6 @@ Cadastrar um usuário com sucesso
     Então devo ver a mensagem de sucesso na tela      ${MENSAGEM_ESPERADA}
 
 
-
-
 que acessei o sistema ServeRest
     Wait Until Element Is Visible
     ...    link: Cadastre-se   
@@ -40,6 +38,7 @@ que acessei o sistema ServeRest
     
 acessei a página de cadastro
     Click Link        Cadastre-se
+    
 
 preecho o formulário com meus dados
     [Arguments]       ${NOME}         ${EMAIL}    ${SENHA}
@@ -48,14 +47,17 @@ preecho o formulário com meus dados
     Input Text        id: email       ${EMAIL}
     Input Password    id: password    ${SENHA}
     
+
 marco o campo "administrador" se for o caso
     [Arguments]       ${EH_ADMINISTRADOR}
 
     Run Keyword If    ${EH_ADMINISTRADOR}
     ...    Click Element     id: administrador
     
+
 submeto os dados
     Click Button      tag: button
+
 
 devo ver a mensagem de sucesso na tela
     [Arguments]       ${MENSAGEM_ESPERADA}
